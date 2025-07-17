@@ -1,10 +1,10 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Countdown to July 18th</title>
+  <title>TVPO Annual Day Celebration</title>
   <style>
     * {
       margin: 0;
@@ -30,6 +30,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+      z-index: 1;
     }
 
     .star {
@@ -51,7 +52,6 @@
       }
     }
 
-    /* Golden confetti background animation */
     .golden-confetti-container {
       position: fixed;
       top: 0;
@@ -59,7 +59,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     .golden-confetti {
@@ -125,12 +125,15 @@
         transform: translateY(-100vh) rotate(0deg);
         opacity: 0;
       }
+
       10% {
         opacity: 1;
       }
+
       90% {
         opacity: 0.8;
       }
+
       100% {
         transform: translateY(100vh) rotate(180deg);
         opacity: 0;
@@ -147,7 +150,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
       animation: float 6s ease-in-out infinite;
       max-width: 90vw;
-      z-index: 10;
+      z-index: 100;
       position: relative;
     }
 
@@ -215,6 +218,14 @@
       margin-top: 0.5rem;
     }
 
+    .event-date {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      margin-top: 1rem;
+      font-weight: 500;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
     .balloon-clusters {
       position: fixed;
       top: 50px;
@@ -262,30 +273,6 @@
       background: rgba(255, 255, 255, 0.6);
     }
 
-    .balloon:nth-child(1) {
-      background: linear-gradient(135deg, #ff6b6b, #ff5252);
-    }
-
-    .balloon:nth-child(2) {
-      background: linear-gradient(135deg, #4ecdc4, #26c6da);
-    }
-
-    .balloon:nth-child(3) {
-      background: linear-gradient(135deg, #45b7d1, #42a5f5);
-    }
-
-    .balloon:nth-child(4) {
-      background: linear-gradient(135deg, #96ceb4, #66bb6a);
-    }
-
-    .balloon:nth-child(5) {
-      background: linear-gradient(135deg, #ffeaa7, #ffeb3b);
-    }
-
-    .balloon:nth-child(6) {
-      background: linear-gradient(135deg, #fd79a8, #e91e63);
-    }
-
     @keyframes gentle-float {
 
       0%,
@@ -296,16 +283,6 @@
       50% {
         transform: translateY(-15px) rotate(1deg);
       }
-    }
-
-    .celebration {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1000;
     }
 
     .confetti {
@@ -353,56 +330,53 @@
       animation-delay: -2.5s;
     }
 
-    .celebration-message {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(45deg, #ffd700, #ffed4a);
-      color: #333;
-      padding: 2.5rem 3.5rem;
-      border-radius: 25px;
-      font-weight: bold;
+    .celebration-message-inline {
       text-align: center;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-      animation: celebration-bounce 0.8s ease-out;
-      z-index: 1001;
+      color: #333;
+      font-weight: bold;
+      margin-top: 1rem;
+      padding: 1.5rem;
+      background: linear-gradient(45deg, #ffd700, #ffed4a);
+      border-radius: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: celebration-pulse 2s ease-in-out infinite;
+      position: relative;
+      z-index: 101;
       display: none;
-      border: 3px solid rgba(255, 255, 255, 0.3);
     }
 
-    .celebration-message .line1 {
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      margin-bottom: 0.8rem;
+    .celebration-message-inline .line1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 0.5rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    .celebration-message .line2 {
-      font-size: clamp(2.2rem, 6vw, 3.5rem);
-      margin-bottom: 0.8rem;
+    .celebration-message-inline .line2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
       color: #2c3e50;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    .celebration-message .line3 {
-      font-size: clamp(1rem, 3vw, 1.5rem);
+    .celebration-message-inline .line3 {
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
       color: #34495e;
       font-weight: 600;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
 
-    @keyframes celebration-bounce {
-      0% {
-        transform: translate(-50%, -50%) scale(0) rotate(10deg);
-        opacity: 0;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.3) rotate(-5deg);
-        opacity: 1;
-      }
+    @keyframes celebration-pulse {
+
+      0%,
       100% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
       }
     }
 
@@ -426,7 +400,6 @@
       }
     }
 
-    /* Enhanced blaster effects */
     .blaster {
       position: absolute;
       width: 3px;
@@ -440,14 +413,57 @@
         transform: translateY(100vh) scaleY(0);
         opacity: 0;
       }
+
       30% {
         opacity: 1;
         transform: translateY(50vh) scaleY(1);
       }
+
       100% {
         transform: translateY(-50vh) scaleY(0);
         opacity: 0;
       }
+    }
+
+    /* Positioning celebration effects around the message box */
+    .celebration-effects-left {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 25%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .celebration-effects-right {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 25%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .celebration-effects-top {
+      position: fixed;
+      top: 0;
+      left: 25%;
+      width: 50%;
+      height: 20%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .celebration-effects-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 25%;
+      width: 50%;
+      height: 20%;
+      pointer-events: none;
+      z-index: 10;
     }
 
     @media (max-width: 768px) {
@@ -465,9 +481,15 @@
         margin: 1rem;
       }
 
-      .celebration-message {
-        padding: 2rem;
-        margin: 1rem;
+      .celebration-effects-left,
+      .celebration-effects-right {
+        width: 20%;
+      }
+
+      .celebration-effects-top,
+      .celebration-effects-bottom {
+        left: 20%;
+        width: 60%;
       }
     }
   </style>
@@ -483,58 +505,62 @@
 
   <div class="countdown-container">
     <h1 class="title">Countdown to Glory</h1>
-    <div class="countdown-display">
+    <div class="countdown-display" id="countdownDisplay">
       <div class="time-unit">
-        <span class="time-value" id="days">00</span>
+        <span class="time-value" id="daysValue">00</span>
         <span class="time-label">Days</span>
       </div>
       <div class="time-unit">
-        <span class="time-value" id="hours">00</span>
+        <span class="time-value" id="hoursValue">00</span>
         <span class="time-label">Hours</span>
       </div>
       <div class="time-unit">
-        <span class="time-value" id="minutes">00</span>
+        <span class="time-value" id="minutesValue">00</span>
         <span class="time-label">Minutes</span>
       </div>
       <div class="time-unit">
-        <span class="time-value" id="seconds">00</span>
+        <span class="time-value" id="secondsValue">00</span>
         <span class="time-label">Seconds</span>
       </div>
     </div>
+    <div class="event-date">
+    </div>
+    <div class="celebration-message-inline" id="celebrationMessageInline">
+      <div class="line1">🎉 Happy Anniversary 🎉</div>
+      <div class="line2">EOG Team</div>
+      <div class="line3">We Cordially Welcome Everyone to our First Ever TVPO Annual Day Celebration!</div>
+    </div>
   </div>
 
-  <div class="celebration" id="celebration"></div>
-  <div class="celebration-message" id="celebrationMessage">
-    <div class="line1">🎉 Happy Anniversary 🎉</div>
-    <div class="line2">EOG Team</div>
-    <div class="line3">We Cordially Welcome Everyone to our First Ever TVPO Annual Day Celebration!</div>
-  </div>
+  <!-- Celebration effects containers positioned around the message box -->
+  <div class="celebration-effects-left" id="celebrationLeft"></div>
+  <div class="celebration-effects-right" id="celebrationRight"></div>
+  <div class="celebration-effects-top" id="celebrationTop"></div>
+  <div class="celebration-effects-bottom" id="celebrationBottom"></div>
 
   <script>
-    // Create golden confetti continuously falling in background
+    // Set the target date for TVPO Annual Day - July 18, 2025
+    const targetDate = new Date('2025-07-18T00:00:00+05:30').getTime();
+    let celebrationStarted = false;
+    let celebrationIntervals = [];
+
     function createGoldenConfetti() {
       const container = document.getElementById('goldenConfettiContainer');
-      
-      // Reduced quantity for better performance
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'golden-confetti';
         confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.animationDuration = (Math.random() * 3 + 8) + 's'; // 8-11 seconds (slower)
+        confetti.style.animationDuration = (Math.random() * 3 + 6) + 's';
         confetti.style.animationDelay = Math.random() * 4 + 's';
-        
         container.appendChild(confetti);
-        
-        // Remove confetti after animation completes
         setTimeout(() => {
           if (confetti.parentNode) {
             confetti.parentNode.removeChild(confetti);
           }
-        }, 15000);
+        }, 12000);
       }
     }
 
-    // Create balloon clusters
     function createBalloonClusters() {
       const leftBalloons = document.querySelector('.left-balloons');
       const rightBalloons = document.querySelector('.right-balloons');
@@ -546,7 +572,6 @@
         'linear-gradient(135deg, #ffeaa7, #ffeb3b)',
         'linear-gradient(135deg, #fd79a8, #e91e63)'
       ];
-      // Create left balloon cluster
       const leftPositions = [{
           x: 0,
           y: 0
@@ -577,7 +602,6 @@
         balloon.style.animationDelay = (i * 0.2) + 's';
         leftBalloons.appendChild(balloon);
       });
-      // Create right balloon cluster
       const rightPositions = [{
           x: 90,
           y: 0
@@ -609,8 +633,7 @@
         rightBalloons.appendChild(balloon);
       });
     }
-    
-    // Create twinkling stars
+
     function createStars() {
       const starsContainer = document.querySelector('.stars');
       for (let i = 0; i < 100; i++) {
@@ -624,130 +647,106 @@
         starsContainer.appendChild(star);
       }
     }
-    
-    // Target date: July 18th, 2025 at 12:00 AM IST (midnight)
-    const targetDate = new Date('2025-07-18T00:00:00+05:30').getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const timeLeft = targetDate - now;
-      if (timeLeft <= 0) {
-        // Time's up! Start celebration
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        startCelebration();
-        return;
-      }
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-      // Add pulse effect on seconds change
-      const secondsElement = document.getElementById('seconds');
-      secondsElement.style.transform = 'scale(1.1)';
-      setTimeout(() => {
-        secondsElement.style.transform = 'scale(1)';
-      }, 100);
-    }
 
     function createConfetti() {
-      const celebration = document.getElementById('celebration');
+      const containers = [
+        document.getElementById('celebrationLeft'),
+        document.getElementById('celebrationRight'),
+        document.getElementById('celebrationTop'),
+        document.getElementById('celebrationBottom')
+      ];
       const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8', '#fdcb6e'];
-      for (let i = 0; i < 200; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animationDelay = Math.random() * 3 + 's';
-        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        // Random shapes
-        if (Math.random() > 0.5) {
-          confetti.style.borderRadius = '0';
-          confetti.style.transform = 'rotate(45deg)';
-        }
-        celebration.appendChild(confetti);
-        // Remove confetti after animation
-        setTimeout(() => {
-          if (confetti.parentNode) {
-            confetti.parentNode.removeChild(confetti);
+      containers.forEach((container, containerIndex) => {
+        for (let i = 0; i < 20; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 3 + 's';
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          if (Math.random() > 0.5) {
+            confetti.style.borderRadius = '0';
+            confetti.style.transform = 'rotate(45deg)';
           }
-        }, 5000);
-      }
+          container.appendChild(confetti);
+          setTimeout(() => {
+            if (confetti.parentNode) {
+              confetti.parentNode.removeChild(confetti);
+            }
+          }, 5000);
+        }
+      });
     }
 
     function createFireworks() {
-      const celebration = document.getElementById('celebration');
+      const containers = [
+        document.getElementById('celebrationLeft'),
+        document.getElementById('celebrationRight'),
+        document.getElementById('celebrationTop'),
+        document.getElementById('celebrationBottom')
+      ];
       const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
-      for (let i = 0; i < 25; i++) {
-        setTimeout(() => {
-          const firework = document.createElement('div');
-          firework.className = 'firework';
-          firework.style.left = Math.random() * 100 + '%';
-          firework.style.top = Math.random() * 100 + '%';
-          firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          celebration.appendChild(firework);
+      containers.forEach((container, containerIndex) => {
+        for (let i = 0; i < 8; i++) {
           setTimeout(() => {
-            if (firework.parentNode) {
-              firework.parentNode.removeChild(firework);
-            }
-          }, 1200);
-        }, i * 150);
-      }
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            container.appendChild(firework);
+            setTimeout(() => {
+              if (firework.parentNode) {
+                firework.parentNode.removeChild(firework);
+              }
+            }, 1200);
+          }, i * 100);
+        }
+      });
     }
 
     function createBlasters() {
-      const celebration = document.getElementById('celebration');
+      const containers = [
+        document.getElementById('celebrationLeft'),
+        document.getElementById('celebrationRight'),
+        document.getElementById('celebrationTop'),
+        document.getElementById('celebrationBottom')
+      ];
       const colors = ['#fff', '#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1'];
-      
-      for (let i = 0; i < 15; i++) {
-        setTimeout(() => {
-          const blaster = document.createElement('div');
-          blaster.className = 'blaster';
-          blaster.style.left = Math.random() * 100 + '%';
-          blaster.style.background = `linear-gradient(to top, transparent, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
-          blaster.style.animationDelay = Math.random() * 0.5 + 's';
-          celebration.appendChild(blaster);
-          
+      containers.forEach((container, containerIndex) => {
+        for (let i = 0; i < 5; i++) {
           setTimeout(() => {
-            if (blaster.parentNode) {
-              blaster.parentNode.removeChild(blaster);
-            }
-          }, 800);
-        }, i * 100);
-      }
+            const blaster = document.createElement('div');
+            blaster.className = 'blaster';
+            blaster.style.left = Math.random() * 100 + '%';
+            blaster.style.background = `linear-gradient(to top, transparent, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
+            blaster.style.animationDelay = Math.random() * 0.5 + 's';
+            container.appendChild(blaster);
+            setTimeout(() => {
+              if (blaster.parentNode) {
+                blaster.parentNode.removeChild(blaster);
+              }
+            }, 800);
+          }, i * 80);
+        }
+      });
     }
 
     function startCelebration() {
-      // Show celebration message
-      document.getElementById('celebrationMessage').style.display = 'block';
-      
-      // Start massive confetti rain
+      if (celebrationStarted) return;
+      celebrationStarted = true;
+      // Hide countdown and show celebration message
+      document.getElementById('countdownDisplay').style.display = 'none';
+      document.getElementById('celebrationMessageInline').style.display = 'block';
+      // Start celebration effects immediately
       createConfetti();
-      
-      // Add enhanced fireworks
       createFireworks();
-      
-      // Add blaster effects
       createBlasters();
-      
-      // Continue creating effects for 15 seconds
-      const confettiInterval = setInterval(createConfetti, 400);
-      const fireworksInterval = setInterval(createFireworks, 800);
-      const blasterInterval = setInterval(createBlasters, 600);
-      
-      setTimeout(() => {
-        clearInterval(confettiInterval);
-        clearInterval(fireworksInterval);
-        clearInterval(blasterInterval);
-      }, 15000);
-      
-      // Play celebration sound (if supported)
+      // Continue creating effects with intervals
+      celebrationIntervals.push(setInterval(createConfetti, 800));
+      celebrationIntervals.push(setInterval(createFireworks, 1200));
+      celebrationIntervals.push(setInterval(createBlasters, 1000));
+      // Play celebration sound
       try {
         const audioContext = new(window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
@@ -764,25 +763,38 @@
         console.log('Audio not supported');
       }
     }
-    
-    // Initialize
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+      if (timeLeft <= 0) {
+        startCelebration();
+        return;
+      }
+      // Calculate time components
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      // Update display
+      document.getElementById('daysValue').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hoursValue').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutesValue').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('secondsValue').textContent = seconds.toString().padStart(2, '0');
+    }
+    // Initialize everything
     createBalloonClusters();
     createStars();
-    updateCountdown();
-    
     // Start golden confetti animation
     createGoldenConfetti();
-    
-    // Continuously create golden confetti every 800ms for heavy rain effect
-    setInterval(createGoldenConfetti, 800);
-    
-    // Update countdown every second
+    setInterval(createGoldenConfetti, 1000);
+    // Start countdown
+    updateCountdown();
     setInterval(updateCountdown, 1000);
-    
-    // Add smooth transitions
-    document.querySelectorAll('.time-value').forEach(element => {
-      element.style.transition = 'transform 0.1s ease';
-    });
+    // Check if we're already past the target date
+    if (new Date().getTime() >= targetDate) {
+      startCelebration();
+    }
   </script>
 </body>
 
